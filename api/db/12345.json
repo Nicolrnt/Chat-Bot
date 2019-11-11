@@ -1,18 +1,22 @@
 {
   "posts": [
     {
+      "id": 1,
       "source": "out",
       "msg": "hello"
     },
     {
+      "id": 2,
       "source": "in",
       "msg": "Hi! How are you doing?"
     },
     {
+      "id": 3,
       "source": "out",
       "msg": "hi"
     },
     {
+      "id": 4,
       "source": "in",
       "msg": "Hi! How are you doing?"
     }

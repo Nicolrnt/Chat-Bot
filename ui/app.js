@@ -53,13 +53,22 @@ new Vue({
     });
   },
   created: function() {
+    const proxy = "https://cors-anywhere.herokuapp.com/";
     const sessionId = "12345";
 
-    fetch("http://localhost:8080/getHistory?sessionId=" + sessionId)
+    fetch(proxy + "https://chat-bot.area-project.ovh/getHistory?sessionId=" + sessionId)
       .then(response => response.json())
       .then(json => {
-        // console.log(json);
-        this.items = json;
+        const tmp = [];
+
+        json.forEach(item => {
+          tmp.push({
+            id: 1,
+            message: item.msg,
+            source: item.source
+          });
+        });
+        this.items = tmp;
       });
   }
 })
