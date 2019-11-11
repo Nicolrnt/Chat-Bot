@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "source": "out",
+      "msg": "hello"
+    },
+    {
+      "source": "in",
+      "msg": "Hi! How are you doing?"
+    },
+    {
+      "source": "out",
+      "msg": "hi"
+    },
+    {
+      "source": "in",
+      "msg": "Hi! How are you doing?"
+    }
+  ],
+  "user": {},
+  "count": 0
+}

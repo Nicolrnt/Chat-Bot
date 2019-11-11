@@ -13,7 +13,7 @@ const FileSync = require('lowdb/adapters/FileSync');
  */
 
 const getDbByName = (dbName) => {
-  const adapter = new FileSync(`${dbName}.json`);
+  const adapter = new FileSync(`./db/${dbName}.json`);
   const db = low(adapter);
 
   db.defaults({})
@@ -25,23 +25,23 @@ const getDbByName = (dbName) => {
  * W R I T E
  */
 
-const addMessageInDb = (dbName, from, msg, promise) => {
+const addMessageInDb = (dbName, source, msg, promise) => {
   const db = getDbByName(dbName);
 
   db.get('posts')
-    .push({ from, msg })
+    .push({ source, msg })
     .write();
   promise.resolve();
 };
 
-const addMessageInDbPromise = (dbName, from, msg) => {
+const addMessageInDbPromise = (dbName, source, msg) => {
   return (new Promise((resolve, reject) => {
-    addMessageInDb(dbName, from, msg, { resolve, reject });
+    addMessageInDb(dbName, source, msg, { resolve, reject });
   }));
 };
 
-const addMessage = (dbName, from, msg) => {
-  return (addMessageInDbPromise(dbName, from, msg));
+const addMessage = (dbName, source, msg) => {
+  return (addMessageInDbPromise(dbName, source, msg));
 };
 
 /**

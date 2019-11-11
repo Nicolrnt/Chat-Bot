@@ -1,3 +1,7 @@
+/*
+** app.js
+*/
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -19,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/debug', debugRouter);
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -35,9 +40,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Default redirect
-app.all('*', (req, res) => {
-  res.status('404').redirect('/');
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
 });
 
 module.exports = app;

@@ -1,2 +1,2 @@
-backend/auth/keys.js
-backend/node_modules
+api/auth/keys.js
+api/node_modules

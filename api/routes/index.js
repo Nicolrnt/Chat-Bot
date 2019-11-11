@@ -51,4 +51,7 @@ router.get('/getHistory', (req, res) => {
     .catch((err) => res.json(err));
 });
 
+/**
+ * Exports
+ */
 module.exports = router;
