@@ -29,7 +29,11 @@ const addMessageInDb = (dbName, source, msg, promise) => {
   const db = getDbByName(dbName);
 
   db.get('posts')
-    .push({ source, msg })
+    .push({
+      id: 0,
+      source,
+      msg
+    })
     .write();
   promise.resolve();
 };

@@ -19,3 +19,18 @@ new Vue({
     ]
   }
 })
+
+var store = {vital:''};
+vm = new Vue({
+  el : "#vueRoot",
+  data : {
+    store: store,
+    message: ''
+  },
+  methods : {
+    submit : function(){
+      alert('Ok');
+      this.$refs.form.submit();
+    }
+  }
+});

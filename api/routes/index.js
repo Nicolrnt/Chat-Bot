@@ -24,20 +24,22 @@ router.get('/', (req, res) => {
 });
 
 /**
- * Add Message
+ * send Message
  */
-router.get('/addMessage', (req, res) => {
+// router.post('/sendMessage', (req, res) => {
+router.get('/sendMessage', (req, res) => {
   const { sessionId, msg } = req.query;
 
+  console.log('> GET - /sendMessage | { sessionId: ' + sessionId + ', msg: ' + msg + ' }');
   dbManager.addMessage(sessionId, 'usr', msg)
     .then(() => {
       dialog.sendMsg(msg)
         .then((data) => {
           dbManager.addMessage(sessionId, 'bot', data)
-          .then(() => res.json('Ok'))
-          .catch(() => res.json('Ko'));
+            .then(() => res.json('Ok'))
+            .catch(() => res.json('Ko'));
         })
-      .catch(() => res.json('Ko'));
+        .catch(() => res.json('Ko'));
     })
     .catch(() => res.json('Ko'));
 });
@@ -46,7 +48,10 @@ router.get('/addMessage', (req, res) => {
  * Get History
  */
 router.get('/getHistory', (req, res) => {
-  dbManager.getMessageHistory(req.query.sessionId)
+  const sessionId = req.query.sessionId;
+
+  console.log('> GET - /getHistory | { sessionId: ' + sessionId + ' }');
+  dbManager.getMessageHistory(sessionId)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });

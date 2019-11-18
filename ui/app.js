@@ -48,15 +48,24 @@ new Vue({
         { id: 1, message: 'Hello', source: 'out'},
         { id: 1, message: 'Hello', source: 'in'},
         { id: 1, message: 'Hello', source: 'out'},
-      ]
+      ],
+      msgToSend: "yolo"
       */
     });
   },
+  methods: {
+    sendMsg: function(val) {
+      alert('> Send :', val);
+    }
+  },
   created: function() {
-    const proxy = "https://cors-anywhere.herokuapp.com/";
-    const sessionId = "12345";
+    const proxy = 'https://cors-anywhere.herokuapp.com/';
+    const endPoint = 'https://chat-bot.area-project.ovh';
+    const route = '/getHistory';
+    const sessionId = '12345';
 
-    fetch(proxy + "https://chat-bot.area-project.ovh/getHistory?sessionId=" + sessionId)
+    // fetch(proxy + endPoint + route + "?sessionId=" + sessionId)
+    fetch(endPoint + route + "?sessionId=" + sessionId)
       .then(response => response.json())
       .then(json => {
         const tmp = [];
@@ -72,3 +81,23 @@ new Vue({
       });
   }
 })
+
+var vm = new Vue({
+  el: '#form',
+  data: function () {
+    return ({
+      message: ''
+    });
+  },
+  methods: {
+    sendMessage: function() {
+      const proxy = 'https://cors-anywhere.herokuapp.com/';
+      const endPoint = 'https://chat-bot.area-project.ovh';
+      const route = '/sendMessage';
+      const sessionId = '12345';
+      const msg = this.$data.message;
+
+      fetch(endPoint + route + '?sessionId=' + sessionId + '&msg=' + msg);
+    }
+  }
+});

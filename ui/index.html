@@ -22,11 +22,12 @@
               </div>
             </div>
 
-            <div class="type_msg">
-              <div class="input_msg_write">
-                <input type="text" class="write_msg" placeholder="Type a message" />
-                <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-              </div>
+            <div class="type_msg" id="form">
+              <form class="input_msg_write" v-on:submit="sendMessage">
+                <span>Will send : {{ message }}</span>
+                <input type="text" class="write_msg" placeholder="Type a message" v-model="message" />
+                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              </form>
             </div>
 
           </div>

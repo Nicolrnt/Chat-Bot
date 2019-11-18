@@ -23,6 +23,16 @@
       </li>
     </ul>
 
+    <div id="vueRoot">
+      <form ref="form">
+        <span>Message is: {{ message }}</span>
+        <br>
+        <input type="text" v-model="message" placeholder="edit me">
+        <!-- <input name="vitalInformation" v-model="store.vital" /> -->
+        <a href="#" v-on:click="submit">SUBMIT</a>
+      </form>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="test.js"></script>
   </body>
